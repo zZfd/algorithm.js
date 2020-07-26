@@ -1,0 +1,56 @@
+<!--
+ * @Author: zfd
+ * @Date: 2020-07-03 22:35:23
+ * @LastEditTime: 2020-07-03 22:52:11
+ * @Description: 
+ * @FilePath: \algorithm\Dialog.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html{
+            font-size: 2vw;
+        }
+        body{
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+        .main{
+            width: 100%;
+            height: 100%;
+            background-color: antiquewhite;
+        }
+        #dialog{
+            display: none;
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            border: 2px solid red;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <button onclick="openDialog()">打开弹窗</button>
+        <div id="dialog">
+            我是弹窗
+        </div>
+    </div>
+    <script>
+        let openDialog = function (){
+            console.log(111);
+            let dialog = document.getElementById('dialog');
+            dialog.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
