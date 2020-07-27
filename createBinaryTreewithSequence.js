@@ -1,7 +1,7 @@
 /*
  * @Author: zfd
  * @Date: 2020-07-26 14:27:48
- * @LastEditTime: 2020-07-26 20:24:52
+ * @LastEditTime: 2020-07-27 22:16:13
  * @Description: 
  * @FilePath: \algorithm\createBinaryTreewithSequence.js
  */ 
@@ -94,6 +94,33 @@ function readBinaryTreeWithEnd(tree){//后序遍历
     }
     return generateArr;
 }
+let adjacencyList = {},nodeMap = new Map(),nodeIndex = 0;
+function adjacencyListWithFirst(tree){//先序遍历
+    if(tree!=null){
+        if(tree.id === undefined){
+            tree.id = nodeIndex++;
+            adjacencyList[tree.id] = [];
+            nodeMap.set(tree.id,tree.val);
+        }
+        if(tree.left != null){
+            tree.left.id = nodeIndex++;
+            adjacencyList[tree.left.id] = [];
+            nodeMap.set(tree.left.id,tree.left.val);
+            adjacencyList[tree.left.id].push(tree.id);//[].push返回新的长度
+            adjacencyList[tree.id].push(tree.left.id);
+        }
+        if(tree.right != null){
+            tree.right.id = nodeIndex++;
+            adjacencyList[tree.right.id] = [];
+            nodeMap.set(tree.right.id,tree.right.val);
+            adjacencyList[tree.right.id].push(tree.id);//[].push返回新的长度
+            adjacencyList[tree.id].push(tree.right.id);
+        }
+        adjacencyListWithFirst(tree.left);
+        adjacencyListWithFirst(tree.right);
+    }
+    //return generateArr;
+}
 createBinaryTreeWithSequence(null)
 console.log(readBinaryTreeWithFirst(tree));
 // nodeArr = [-10,9,20,null,null,15,7,8,9,11,10,11,12];//null即为叶节点
@@ -101,3 +128,6 @@ console.log(readBinaryTreeWithFirst(tree));
  console.log(readBinaryTreeWithMid(tree));
  generateArr = [];
  console.log(readBinaryTreeWithEnd(tree));
+ adjacencyListWithFirst(tree);
+ console.log(adjacencyList);
+ console.log(nodeMap);
